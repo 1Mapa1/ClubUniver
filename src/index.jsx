@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import "./styles/index.css";
 import "./styles/tailwind.css";
+import "./styles/modal.css";
 ReactDOM.render(
   <React.StrictMode>
     <App />

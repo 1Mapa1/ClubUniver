@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const shapes = { round: "rounded-[20px]" };
-const variants = { fill: { white_A700: "bg-white-A700 text-light_blue-800" } };
+const variants = { white: { white_A700: "bg-white-A700 text-light_blue-800" }, blue: { white_A700: "bg-light_blue-800 text-white-A700" }};
 const sizes = { xs: "p-[21px] sm:px-5" };
 
 const Button = ({
@@ -13,7 +13,7 @@ const Button = ({
   onClick,
   shape = "round",
   size = "xs",
-  variant = "fill",
+  variant = "white",
   color = "white_A700",
   ...restProps
 }) => {
@@ -37,8 +37,10 @@ Button.propTypes = {
   children: PropTypes.node,
   shape: PropTypes.oneOf(["round"]),
   size: PropTypes.oneOf(["xs"]),
-  variant: PropTypes.oneOf(["fill"]),
+  variant: PropTypes.oneOf(["white", "blue"]),
   color: PropTypes.oneOf(["white_A700"]),
 };
+
+
 
 export { Button };

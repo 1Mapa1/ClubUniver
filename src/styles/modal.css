@@ -1,0 +1,51 @@
+.modal {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+    z-index: 2;
+}
+
+.modal.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(1);
+}
+
+.modal__content {
+    padding: 20px;
+    background-color: white;
+    transform: scale(0.5);
+    transition: 0.4s all;
+    max-height: 100vh;  /* Установите максимальную высоту модального окна */
+    overflow-y: auto;
+}
+
+.modal__content.active {
+    transform: scale(1);
+}
+.react-multiple-carousel__arrow--left {
+    left: 0px !important; /* Отступ слева */
+  }
+  
+  /* Стили стрелки "вперед" */
+.react-multiple-carousel__arrow--right {
+right: 0px !important; 
+}
+
+.react-multiple-carousel__arrow{
+    background-color: #0075bb !important;
+}
+
+.close-text {
+    display: grid;
+    grid-template-columns: 10fr 1fr;
+}

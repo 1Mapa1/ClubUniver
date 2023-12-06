@@ -21,7 +21,7 @@ body {
   height: clamp(30px, 8vw, 50px);
 }
 .text-logo {
-  font-size: clamp(12px, 3vw, 25px);;
+  font-size: clamp(12px, 3vw, 20px);;
 }
 
 @media screen and (max-width: 1200px) {
