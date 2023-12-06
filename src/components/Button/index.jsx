@@ -10,6 +10,7 @@ const Button = ({
   className = "",
   leftIcon,
   rightIcon,
+  onClick,
   shape = "round",
   size = "xs",
   variant = "fill",
@@ -18,6 +19,7 @@ const Button = ({
 }) => {
   return (
     <button
+      onClick={onClick}
       className={`${className} ${(shape && shapes[shape]) || ""} ${
         (size && sizes[size]) || ""
       } ${(variant && variants[variant]?.[color]) || ""}`}
