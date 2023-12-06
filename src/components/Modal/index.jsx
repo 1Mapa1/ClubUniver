@@ -64,7 +64,7 @@ const Modal = ({ children, active, setActive }) => {
                 src="images/img_image2.png"
                 alt="imageTwo"
               />
-              <div className="flex flex-col items-center justify-start ml-5 md:hidden md:ml-[0] md:mt-0 mt-[13px] w-6 md:w-full">
+              <div className="flex flex-col items-center justify-start ml-5 md:hidden md:ml-[0] md:mt-0 mt-[13px] w-10" onClick={() => setActive(false)}>
                 <Img
                   className="h-[25px] w-6"
                   src="images/img_close.svg"
