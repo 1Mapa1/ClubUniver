@@ -28,6 +28,7 @@ const Page = () => {
             </div>
           </header>
         </div>
+        
         <div className="max-w-[1360px] mt-auto mx-auto md:px-5 w-full">
           <Text
             className="mx-auto club-text text-center text-white-A700 z-[1] sm:my-[30px]"

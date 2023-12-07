@@ -1,0 +1,25 @@
+body {
+    background-color: #E5E5E5;
+}
+
+.login-box{
+    height: max-content;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    flex-direction: column;
+}
+
+.login-box-table{
+    height: max-content;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    width: max-content;
+    flex-direction: column;
+}

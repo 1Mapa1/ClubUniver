@@ -4,32 +4,40 @@ import { List, Card } from "components";
 
 const FeaturedClubsList = () => {
   const [data, setClubs] = useState([]);
+  const [loading, setLoading] = useState(true); // Добавлено состояние для отслеживания загрузки
 
   useEffect(() => {
     getClubs();
   }, []);
 
   async function getClubs() {
-    const { data } = await supabase.from("Clubs").select();
-    console.log(data)
-    setClubs(data);
+    try {
+      const { data } = await supabase.from("Clubs").select();
+      setClubs(data);
+    } catch (error) {
+      console.error("Ошибка при получении данных:", error);
+    } finally {
+      setLoading(false); // Устанавливаем состояние загрузки в false после завершения запроса
+    }
   }
 
   return (
-    <List
-        className="flex flex-col gap-[42px] items-center mt-auto mx-auto w-full"
-        orientation="vertical"
-    >
-        {data.map((element, i) => (
-            <Card key={element.id} data ={data[i]} />
-        ))}
-    </List>
-    // <ul>
-    //   {countries.map((country) => (
-    //     <li key={country.name}>{country.name}</li>
-    //   ))}
-    // </ul>
+    <>
+      {loading ? (
+        // Отображаем индикатор загрузки или сообщение о загрузке
+        <p></p>
+      ) : (
+        <List
+          className="flex flex-col gap-[42px] items-center mt-auto mx-auto w-full"
+          orientation="vertical"
+        >
+          {data.map((element, i) => (
+            <Card key={element.id} data={data[i]} />
+          ))}
+        </List>
+      )}
+    </>
   );
-}
+};
 
 export default FeaturedClubsList;
