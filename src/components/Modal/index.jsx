@@ -2,16 +2,12 @@ import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Text, Button, Img } from "components";
+import FeaturedClubs from 'repo/LoadClubsList';
 
 
-const Modal = ({ children, active, setActive }) => {
-  const images = [
-    'images/img_rectangle10.png',
-    'images/img_rectangle11.png',
-    'images/img_rectangle12.png',
-    'images/img_rectangle13.png',
-  ];
-
+const Modal = ({club_data, active, setActive}) => {
+  const images = club_data.list_image;
+  console.log(images);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -37,7 +33,7 @@ const Modal = ({ children, active, setActive }) => {
                     className="md:text-3xl sm:text-[28px] text-[32px] text-black-900"
                     size="txtSourceSansProSemiBold32"
                   >
-                    Клуб настольных и сюжетно-ролевых игр «Воины света»
+                    {club_data.name}
                   </Text>
                   <div className="hidden md:flex items-center justify-start ml-5 md:ml-[0] md:mt-0 mt-[13px] w-6 md:w-[10px]" onClick={() => setActive(false)}>
                     <Img
@@ -51,17 +47,12 @@ const Modal = ({ children, active, setActive }) => {
                   className="text-black-900 text-xl w-full"
                   size="txtSourceSansProRegular20"
                 >
-                  Уютная атмосфера, куча настольных игр, мастера по Dungeons &
-                  Dragons, библиотека, как культовых, так и самых нашумевших
-                  фэнтези книг и графических романов, горячий чай и самые
-                  вкусные печеньки. Будь участником настольных ролевых игр,
-                  ролевых балов, въездов на крупные ролевые игры. Каждую неделю
-                  тебя ждет сюжетная ролевая игра.
+                  {club_data.descriptions}
                 </Text>
               </div>
               <Img
                 className="md:hidden h-[189px] sm:h-auto ml-16 md:ml-[0] object-cover rounded-[85px] w-[15%] md:w-full"
-                src="images/img_image2.png"
+                src={club_data.logo}
                 alt="imageTwo"
               />
               <div className="flex flex-col items-center justify-start ml-5 md:hidden md:ml-[0] md:mt-0 mt-[13px] w-10" onClick={() => setActive(false)}>
@@ -73,8 +64,8 @@ const Modal = ({ children, active, setActive }) => {
               </div>
             </div>
             <div >
-            <Carousel responsive={responsive} infinite="true" className='mt-[46px]'>
-              {images.map((image, index) => (
+            {/* <Carousel responsive={responsive} infinite="true" className='mt-[46px]'>
+              {club_data.list_image.map((image, index) => (
                 <img
                   key={index}
                   className="h-[212px] md:h-[200px] sm:h-[200px] object-cover rounded-[20px] w-[90%] sm:w-[100%]"
@@ -82,7 +73,7 @@ const Modal = ({ children, active, setActive }) => {
                   alt={`image_${index}`}
                 />
               ))}
-            </Carousel>
+            </Carousel> */}
             </div>
             <div className="flex flex-col items-start justify-start mt-[46px] w-[92%] md:w-full">
               <Text

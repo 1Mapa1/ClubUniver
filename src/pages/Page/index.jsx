@@ -1,5 +1,5 @@
 import React from "react";
-
+import FeaturedClubsList from "repo/LoadClubsList";
 import { Button, Img, List, Text, LetterLast , Card} from "components";
 
 const Page = () => {
@@ -37,26 +37,8 @@ const Page = () => {
             КЛУБЫ
             </LetterLast>
           </Text>
-          <List
-            className="flex flex-col gap-[42px] items-center mt-auto mx-auto w-full"
-            orientation="vertical"
-          >
-            <Card
-              title = "Клуб настольных и сюжетно-ролевых игр «Воины света»"
-              imageUrl = "images/img_image7.png"
-            >
-            </Card>
-            <Card
-              title = "Походный клуб «Гицареон»"
-              imageUrl = "images/img_image7_335x501.png"
-            >
-            </Card>
-            <Card
-              title = "Спортивный клуб ТОРНАДО"
-              imageUrl = "images/img_image7_1.png"
-            >
-            </Card>
-          </List>
+          <FeaturedClubsList />
+
         </div>
         
       </div>
