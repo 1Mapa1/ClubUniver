@@ -30,7 +30,7 @@ const Card = ({data}) => {
         </div>
         <Img
             className="h-[335px] md:h-[200px] sm:h-[200px] md:mt-0 mt-5 object-cover min-w-[500px] max-w-[500px] md:max-w-[350px] md:min-w-[300px] sm:min-w-[320px] md:w-full rounded-[20px]"
-            src={data.preview}
+            src={data.preview_link}
             alt="imageSeven"
         />
         </div>

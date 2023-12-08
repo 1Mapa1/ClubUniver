@@ -6,7 +6,7 @@ import FeaturedClubs from 'repo/LoadClubsList';
 
 
 const Modal = ({club_data, active, setActive}) => {
-  const images = club_data.list_image;
+  const images = club_data.list_image_links;
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -51,7 +51,7 @@ const Modal = ({club_data, active, setActive}) => {
               </div>
               <Img
                 className="md:hidden h-[189px] sm:h-auto ml-16 md:ml-[0] object-cover rounded-[85px] w-[15%] md:w-full"
-                src={club_data.logo}
+                src={club_data.logo_link}
                 alt="imageTwo"
               />
               <div className="flex flex-col items-center justify-start ml-5 md:hidden md:ml-[0] md:mt-0 mt-[13px] w-10" onClick={() => setActive(false)}>
@@ -64,7 +64,7 @@ const Modal = ({club_data, active, setActive}) => {
             </div>
             <div >
             <Carousel responsive={responsive} infinite="true" className='mt-[46px]'>
-              {images === null ? <div></div> : club_data.list_image.map((image, index) => (
+              {images === null ? <div></div> : images.map((image, index) => (
                 <img
                   key={index}
                   className="h-[212px] md:h-[200px] sm:h-[200px] object-cover rounded-[20px] w-[90%] sm:w-[100%]"
@@ -96,7 +96,7 @@ const Modal = ({club_data, active, setActive}) => {
                 Расположение в университете: библиотека
               </Text>
               <div className="flex flex-row font-inter md:gap-10 items-start justify-between md:ml-[0] ml-[33px] mt-[18px] w-[103%] md:w-full">
-                <a href={club_data.vk_group}>
+                <a href={club_data.vk_group_link}>
                 <Img
                   className="h-[62px] w-[62px]"
                   src="images/img_entyposocialvkwithcircle.svg"
