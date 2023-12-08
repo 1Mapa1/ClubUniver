@@ -15,21 +15,21 @@ const Card = ({data}) => {
             alt="imageFour"
         />
         </div>
-        <div className="absolute flex flex-row sm:flex-col md:gap-[25px] gap-[62px] h-max inset-[0] items-start justify-center m-auto w-[86%]">
-        <div className="flex sm:grid sm:grid-cols-2 flex-col sm:flex-row items-start sm:items-center justify-start">
+        <div className="absolute flex flex-row sm:flex-col md:gap-[25px] gap-[62px] h-max inset-[0] items-start justify-between m-auto w-[86%] sm:items-center">
+        <div className="flex sm:grid sm:grid-cols-2 flex-col gap-[10px] sm:flex-row items-start sm:items-center justify-start sm:min-w-[320px]">
             <Text
             className="sm:text-[18px] md:text-[20px] text-[3em] text-white-A700 w-full"
             size="txtSourceSansProBold48"
             >
             {data.name}
             </Text>
-            <Button className="font-semibold leading-[normal] sm:min-w-[150px]  md:min-w-[200px] mt-[20px] min-w-[290px] sm:mt-[0px] text-2xl md:text-[22px] text-center sm:text-xl"
+            <Button className="font-semibold leading-[normal] sm:min-w-[150px]  md:min-w-[150px] mt-[20px] min-w-[290px] sm:mt-[0px] text-2xl md:text-[22px] text-center sm:text-xl"
             onClick = {() => setModalActive(true)}>
             Подробнее
             </Button>
         </div>
         <Img
-            className="h-[335px] md:h-[200px] sm:h-[150px] sm:h-auto md:mt-0 mt-5 object-cover w-[44%] md:w-full rounded-[20px]"
+            className="h-[335px] md:h-[200px] sm:h-[200px] md:mt-0 mt-5 object-cover min-w-[500px] max-w-[500px] md:max-w-[350px] md:min-w-[300px] sm:min-w-[320px] md:w-full rounded-[20px]"
             src={data.preview}
             alt="imageSeven"
         />
