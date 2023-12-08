@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { Button } from 'components';
 import { isUserConfirm } from 'repo/IsUserConfirm';
+import { BrowserRouter as Redirect, Link } from 'react-router-dom';
 
 const LoginForm = () => {
   const [login, setLogin] = useState('');
@@ -19,6 +20,7 @@ const LoginForm = () => {
     e.preventDefault();
     const isConfirmed = await isUserConfirm(login, password);
     if (isConfirmed) {
+      
       console.log('Успешный вход');
     } else {
       console.log('Неправильное имя пользователя или пароль');

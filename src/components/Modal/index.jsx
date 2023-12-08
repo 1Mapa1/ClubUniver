@@ -85,25 +85,29 @@ const Modal = ({club_data, active, setActive}) => {
                 <span className="text-light_blue-800 font-sourcesanspro text-left font-normal">
                   {" "}
                 </span>
-                <span className="text-light_blue-800 font-sourcesanspro text-left font-normal">
-                  Владислав Трюфилькин
-                </span>
+                <a href={club_data.Users.social_network_link} target="_blank" rel="noopener noreferrer" className="text-light_blue-800 font-sourcesanspro text-left font-normal">
+                  {club_data.Users.user_name}
+                </a>
               </Text>
               <Text
                 className="mt-1 text-black-900 text-xl"
                 size="txtSourceSansProRegular20"
               >
-                Расположение в университете: библиотека
+                Расположение в университете: {club_data.Locations.location_name}
               </Text>
               <div className="flex flex-row font-inter md:gap-10 items-start justify-between md:ml-[0] ml-[33px] mt-[18px] w-[103%] md:w-full">
-                <a href={club_data.vk_group_link}>
+                <a href={club_data.vk_group_link} target="_blank" rel="noopener noreferrer">
                 <Img
                   className="h-[62px] w-[62px]"
                   src="images/img_entyposocialvkwithcircle.svg"
                   alt="entyposocialvkw"
                 />
                 </a>
-                <Button className="cursor-pointer font-semibold leading-[normal] mb-1 min-w-[244px] text-center text-xl" variant="blue">
+                <Button onClick={
+                  function handleClick() {
+                    window.open(club_data.vk_group_link, '_blank');
+                  }} 
+                  className="cursor-pointer font-semibold leading-[normal] mb-1 min-w-[244px] text-center text-xl" variant="blue">
                   Вступить
                 </Button>
               </div>
