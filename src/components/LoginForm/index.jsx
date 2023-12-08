@@ -28,7 +28,7 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='text-center'>
       <div>
         <TextField
           label="Login"
