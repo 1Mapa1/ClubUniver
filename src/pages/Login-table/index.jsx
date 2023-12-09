@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
 import { Button, Img, List, Text, LetterLast , Card} from "components";
 import { loadFreeTime } from 'repo/loadFreeTime';
+import { uploadScheduleSelect } from 'repo/uploadScheduleSelect';
 
 const options = [
   { value: 1, label: 'Понедельник' },
@@ -33,6 +34,7 @@ const ColorOption = ({ value, selected, onSelect, last }) => {
 
 const Login_table = () => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedDataRow, setSelectedDataRow] = useState(null);
   const [selectedOptionNumber, setSelectedOptionNumber] = useState(null);
   const [optionsNumber, setOptionsNumber] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   const [bigData, setBigData] = useState(null);
@@ -54,8 +56,6 @@ const Login_table = () => {
   }, [optionsNumber]);
 
   const handleChange = async (selected) => {
-    console.log(selected)
-    console.log(selectedOption)
     setSelectedOption(selected);
     
     const selectedDay = selected.value;
@@ -80,10 +80,16 @@ const Login_table = () => {
     setSelectedOptionNumber(value);
   };
 
+  const handleSubmit = (value) => {
+    
+    uploadScheduleSelect(selectedDataRow, selectedOption.value, selectedOptionNumber, localStorage.getItem('director_id'));
+  };
+
   
 
   const swapSelected = (code) => {
-    
+    setSelectedDataRow(data[code]);
+    // console.log(data[code])
     setData(prevData =>
       prevData.map((item, index) => {
         if (index === code) {
@@ -144,15 +150,15 @@ const Login_table = () => {
                       <th colSpan="2" className='table-th-right'>Доступное время</th>
                   </tr>
                   <tr>
-                    <th className='px-[80px] md:px-[50px] sm:px-[20px]'>Начало</th>
-                    <th className='border-r-0 px-[80px] md:px-[50px] sm:px-[20px]'>Конец</th>
+                    <th className='px-[80px] md:px-[50px] sm:px-[20px]'>С</th>
+                    <th className='border-r-0 px-[80px] md:px-[50px] sm:px-[20px]'>По</th>
                   </tr>
                 </thead>
                 <tbody>
                   { data.map((row, index) => (
                     <tr key={row.id} onClick={() => swapSelected(index)} className={row.isSelected ? "select-row" : ""}>
                       <td className={'border-l-0 '}>{index + 1}</td>
-                      <td className=''>{row.location}</td>
+                      <td className=''>{row.location.name}</td>
                       <td className=''>{row.starting_time}:00</td>
                       <td className='border-r-0'>{row.end_time}:00</td>
                     </tr>
@@ -179,7 +185,7 @@ const Login_table = () => {
 
 
                   </div>
-                  <Button type="submit" className="cursor-pointer font-semibold leading-[normal] min-w-[200px] h-[60px] text-center text-l p-[0px]" variant="blue">
+                  <Button onClick={handleSubmit} type="submit" className="cursor-pointer font-semibold leading-[normal] min-w-[200px] h-[60px] text-center text-l p-[0px]" variant="blue">
                     Забронировать
                   </Button>
               </div>

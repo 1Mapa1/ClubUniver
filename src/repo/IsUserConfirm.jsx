@@ -17,7 +17,7 @@ export async function isUserConfirm(login, password) {
     }
     
     if ((data.login === login) && (data.password === password)) {
-      return true;
+      return data.id;
     } 
     else {
       return false;

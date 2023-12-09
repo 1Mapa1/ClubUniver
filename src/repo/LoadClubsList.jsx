@@ -13,7 +13,6 @@ const FeaturedClubsList = () => {
   async function getClubs() {
     try {
       const { data } = await supabase.from("Clubs").select("*, Users(user_name, social_network_link), Locations(location_name)").order('id');
-      data.sort()
       console.log(data)
       setClubs(data);
     } catch (error) {

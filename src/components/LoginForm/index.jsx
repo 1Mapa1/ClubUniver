@@ -6,6 +6,8 @@ import useAuth from 'hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
+
+
 const LoginForm = () => {
   const { setAuth } = useAuth()
   const navigate = useNavigate()
@@ -13,6 +15,12 @@ const LoginForm = () => {
   const from = location.state?.from?.pathname || '/'
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+
+  function saveCredentials(login, password, director_id) {
+    localStorage.setItem('login', login);
+    localStorage.setItem('password', password);
+    localStorage.setItem('director_id', director_id);
+  }
 
   const handleLoginChange = (e) => {
     setLogin(e.target.value);
@@ -26,7 +34,9 @@ const LoginForm = () => {
     e.preventDefault();
     const isConfirmed = await isUserConfirm(login, password);
     if (isConfirmed) {
-      setAuth(true)
+      console.log(isConfirmed);
+      saveCredentials(login, password, isConfirmed);
+      setAuth(true);
       navigate(from, { replace: true });
       console.log('Успешный вход');
     } else {
