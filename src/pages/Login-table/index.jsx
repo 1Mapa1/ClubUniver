@@ -42,11 +42,11 @@ const Login_table = () => {
     // Тут вызывается ваша функция для получения данных
     const result = await loadFreeTime();
     setBigData(result);
+    setData(result[0].schedule_entries)
   };
 
   useEffect(() => {
     loadBigdata();
-    
   }, []);
 
   useEffect(() => {
@@ -54,7 +54,10 @@ const Login_table = () => {
   }, [optionsNumber]);
 
   const handleChange = async (selected) => {
+    console.log(selected)
+    console.log(selectedOption)
     setSelectedOption(selected);
+    
     const selectedDay = selected.value;
     
     let newData = [];
@@ -69,7 +72,7 @@ const Login_table = () => {
     newData.map((row) => {
       row.isSelected = false;
     })
-    console.log(newData)
+    
     setData(newData);
   };
 
@@ -79,18 +82,20 @@ const Login_table = () => {
 
   
 
-  const svapSelecred = (code) => {
+  const swapSelected = (code) => {
+    
     setData(prevData =>
-      prevData.map(item => {
-        if (item.id === code) {
+      prevData.map((item, index) => {
+        if (index === code) {
           if (!item.isSelected) {
             let numbers = [];
-            for (let i = 0; i < parseInt(item.end) - parseInt(item.start); i++) {
+            for (let i = 0; i < parseInt(item.end_time) - parseInt(item.starting_time); i++) {
               numbers.push(i + 1);
             }
             setSelectedOptionNumber(null);
             setOptionsNumber(numbers);
           }
+          
           return { ...item, isSelected: !item.isSelected };
         }
         return { ...item, isSelected: false };
@@ -145,7 +150,7 @@ const Login_table = () => {
                 </thead>
                 <tbody>
                   { data.map((row, index) => (
-                    <tr key={row.id} onClick={() => svapSelecred(index+1)} className={row.isSelected ? "select-row" : ""}>
+                    <tr key={row.id} onClick={() => swapSelected(index)} className={row.isSelected ? "select-row" : ""}>
                       <td className={'border-l-0 '}>{index + 1}</td>
                       <td className=''>{row.location}</td>
                       <td className=''>{row.starting_time}:00</td>

@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { Button } from 'components';
 import { isUserConfirm } from 'repo/IsUserConfirm';
-import { BrowserRouter as Redirect, Link } from 'react-router-dom';
+import useAuth from 'hooks/useAuth';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 const LoginForm = () => {
+  const { setAuth } = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,7 +26,8 @@ const LoginForm = () => {
     e.preventDefault();
     const isConfirmed = await isUserConfirm(login, password);
     if (isConfirmed) {
-      
+      setAuth(true)
+      navigate(from, { replace: true });
       console.log('Успешный вход');
     } else {
       console.log('Неправильное имя пользователя или пароль');
