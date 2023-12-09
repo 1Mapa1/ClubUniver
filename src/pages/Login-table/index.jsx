@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
 import { Button, Img, List, Text, LetterLast , Card} from "components";
+import { loadFreeTime } from 'repo/loadFreeTime';
 
 const options = [
-  { value: 'monday', label: 'Понедельник' },
-  { value: 'tuesday', label: 'Вторник' },
-  { value: 'wednesday', label: 'Среда' },
-  { value: 'thursday', label: 'Четверг' },
-  { value: 'friday', label: 'Пятница' },
+  { value: 1, label: 'Понедельник' },
+  { value: 2, label: 'Вторник' },
+  { value: 3, label: 'Среда' },
+  { value: 4, label: 'Четверг' },
+  { value: 5, label: 'Пятница' },
 ];
 
 const ColorOption = ({ value, selected, onSelect, last }) => {
@@ -33,62 +34,42 @@ const ColorOption = ({ value, selected, onSelect, last }) => {
 const Login_table = () => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [selectedOptionNumber, setSelectedOptionNumber] = useState(null);
-  const [optionsNumber, setOptionsNumber] = useState([2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const [optionsNumber, setOptionsNumber] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const [bigData, setBigData] = useState(null);
+  const [data, setData] = useState([]);
 
-  const [data, setData] = useState([
-    { id: 1, classroom: '201', start: '12', end: '15', isSelected: false },
-    { id: 2, classroom: '505', start: '11', end: '18', isSelected: false },
-    { id: 3, classroom: '201', start: '12', end: '15', isSelected: false },
-    { id: 4, classroom: '505', start: '11', end: '18', isSelected: false },
-    { id: 5, classroom: '201', start: '12', end: '15', isSelected: false },
-    { id: 6, classroom: '505', start: '11', end: '18', isSelected: false },
-    { id: 7, classroom: '201', start: '12', end: '15', isSelected: false },
-    { id: 8, classroom: '505', start: '11', end: '18', isSelected: false },
-    { id: 9, classroom: '201', start: '12', end: '15', isSelected: false },
-    { id: 10, classroom: '505', start: '11', end: '18', isSelected: false },
-    { id: 11, classroom: '201', start: '12', end: '15', isSelected: false },
-    { id: 12, classroom: '505', start: '11', end: '18', isSelected: false },
-    { id: 13, classroom: '201', start: '12', end: '15', isSelected: false },
-    { id: 14, classroom: '505', start: '11', end: '18', isSelected: false },
-    { id: 15, classroom: '201', start: '12', end: '15', isSelected: false },
-    { id: 16, classroom: '505', start: '11', end: '18', isSelected: false },
-  ]);
+  const loadBigdata = async () => {
+    // Тут вызывается ваша функция для получения данных
+    const result = await loadFreeTime();
+    setBigData(result);
+  };
 
-  const handleChange = (selected) => {
+  useEffect(() => {
+    loadBigdata();
+    
+  }, []);
+
+  useEffect(() => {
+    setSelectedOptionNumber(null);
+  }, [optionsNumber]);
+
+  const handleChange = async (selected) => {
     setSelectedOption(selected);
     const selectedDay = selected.value;
+    
     let newData = [];
     switch (selectedDay) {
-      case 'monday':
-        newData = ([
-          { id: 1, classroom: '201', start: '12', end: '15', isSelected: false },
-          { id: 2, classroom: '505', start: '11', end: '18', isSelected: false },
-          { id: 3, classroom: '201', start: '12', end: '15', isSelected: false },
-          { id: 4, classroom: '505', start: '11', end: '18', isSelected: false },
-          { id: 5, classroom: '201', start: '12', end: '15', isSelected: false },
-          { id: 6, classroom: '505', start: '11', end: '18', isSelected: false },
-          { id: 7, classroom: '201', start: '12', end: '15', isSelected: false },
-          { id: 8, classroom: '505', start: '11', end: '18', isSelected: false },
-          { id: 9, classroom: '201', start: '12', end: '15', isSelected: false },
-          { id: 10, classroom: '505', start: '11', end: '18', isSelected: false },
-          { id: 11, classroom: '201', start: '12', end: '15', isSelected: false },
-          { id: 12, classroom: '505', start: '11', end: '18', isSelected: false },
-          { id: 13, classroom: '201', start: '12', end: '15', isSelected: false },
-          { id: 14, classroom: '505', start: '11', end: '18', isSelected: false },
-          { id: 15, classroom: '201', start: '12', end: '15', isSelected: false },
-          { id: 16, classroom: '505', start: '11', end: '18', isSelected: false },
-        ])
+      case 1:
+        newData = bigData[0].schedule_entries
         break;
-      case 'tuesday':
-        newData = ([
-          { id: 1, classroom: '201', start: '12', end: '15', isSelected: false },
-          { id: 2, classroom: '505', start: '11', end: '18', isSelected: false },
-          { id: 3, classroom: '201', start: '12', end: '15', isSelected: false },
-          { id: 4, classroom: '505', start: '11', end: '18', isSelected: false },
-          { id: 5, classroom: '201', start: '12', end: '15', isSelected: false },
-          { id: 6, classroom: '505', start: '11', end: '18', isSelected: false },])
+      case 2:
+        newData = bigData[1].schedule_entries
         break;
     }
+    newData.map((row) => {
+      row.isSelected = false;
+    })
+    console.log(newData)
     setData(newData);
   };
 
@@ -96,9 +77,7 @@ const Login_table = () => {
     setSelectedOptionNumber(value);
   };
 
-  useEffect(() => {
-    setSelectedOptionNumber(null);
-  }, [optionsNumber]);
+  
 
   const svapSelecred = (code) => {
     setData(prevData =>
@@ -155,22 +134,22 @@ const Login_table = () => {
                         №
                       </th>
                       <th rowSpan={2} className='border-t-0 md:px-[50px] sm:px-[30px]'>
-                        Аудитория
+                        Расположение
                       </th>
                       <th colSpan="2" className='table-th-right'>Доступное время</th>
                   </tr>
                   <tr>
-                    <th className='px-[80px] md:px-[50px] sm:px-[20px]'>Цвета</th>
-                    <th className='border-r-0 px-[80px] md:px-[50px] sm:px-[20px]'>Продажи</th>
+                    <th className='px-[80px] md:px-[50px] sm:px-[20px]'>Начало</th>
+                    <th className='border-r-0 px-[80px] md:px-[50px] sm:px-[20px]'>Конец</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((row) => (
-                    <tr key={row.id} onClick={() => svapSelecred(row.id)} className={row.isSelected ? "select-row" : ""}>
-                      <td className={'border-l-0 '}>{row.id}</td>
-                      <td className=''>{row.classroom}</td>
-                      <td className=''>{row.start}:00</td>
-                      <td className='border-r-0'>{row.end}:00</td>
+                  { data.map((row, index) => (
+                    <tr key={row.id} onClick={() => svapSelecred(index+1)} className={row.isSelected ? "select-row" : ""}>
+                      <td className={'border-l-0 '}>{index + 1}</td>
+                      <td className=''>{row.location}</td>
+                      <td className=''>{row.starting_time}:00</td>
+                      <td className='border-r-0'>{row.end_time}:00</td>
                     </tr>
                   ))}
                 </tbody>
