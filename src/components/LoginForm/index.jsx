@@ -12,7 +12,7 @@ const LoginForm = () => {
   const { setAuth } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-  const from = location.state?.from?.pathname || '/'
+  const from = location.state?.from?.pathname || '/login-table'
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 

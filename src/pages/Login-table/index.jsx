@@ -10,6 +10,7 @@ const options = [
   { value: 3, label: 'Среда' },
   { value: 4, label: 'Четверг' },
   { value: 5, label: 'Пятница' },
+  { value: 6, label: 'Суббота' },
 ];
 
 const ColorOption = ({ value, selected, onSelect, last }) => {
@@ -67,6 +68,18 @@ const Login_table = () => {
         break;
       case 2:
         newData = bigData[1].schedule_entries
+        break;
+      case 3:
+        newData = bigData[2].schedule_entries
+        break;
+      case 4:
+        newData = bigData[3].schedule_entries
+        break;
+      case 5:
+        newData = bigData[4].schedule_entries
+        break;
+      case 6:
+        newData = bigData[5].schedule_entries
         break;
     }
     newData.map((row) => {
