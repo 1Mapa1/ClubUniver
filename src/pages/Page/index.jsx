@@ -1,6 +1,6 @@
 import React from "react";
 import FeaturedClubsList from "repo/LoadClubsList";
-import { Button, Img, List, Text, LetterLast , Card} from "components";
+import { Img, Text, LetterLast, Header} from "components";
 
 const Page = () => {
   return (
@@ -12,21 +12,9 @@ const Page = () => {
             src="images/img_121.png"
             alt="OneHundredTwentyOne"
           />
-          <header className="absolute flex inset-x-[0] items-center justify-center mx-auto top-[0]">
-            <div className="bg-white-A700 grid flex-row sm:gap-10 items-center justify-center p-5 rounded-bl-[20px] rounded-br-[20px] header-block">
-              <Img
-                className="mb-[9px] ml-1.5 sm:ml-[0] object-cover img-logo"
-                src="images/img_image1.png"
-                alt="imageOne"
-              />
-              <Text
-                className="text-light_blue-800 text-logo"
-                size="txtInterSemiBold20"
-              >
-                Клубы по интересам
-              </Text>
-            </div>
-          </header>
+          <Header>
+            
+          </Header>
         </div>
         
         <div className="max-w-[1360px] mt-auto mx-auto md:px-5 w-full">

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
-import { Button, Img, List, Text, LetterLast , Card} from "components";
+import { Button, Header} from "components";
 import { loadFreeTime } from 'repo/loadFreeTime';
 import { uploadScheduleSelect } from 'repo/uploadScheduleSelect';
 
@@ -113,21 +113,9 @@ const Login_table = () => {
     <>
     <div className="bg-grey-bg font-sourcesanspromx-auto pb-[27px] px-[27px] md:px-[0px] relative w-full">
         <div className="font-inter flex items-center justify-center h-[100vh]  max-w-[1360px] mx-auto w-full z-[1] body-login">
-          <header className="absolute flex inset-x-[0] items-center justify-center mx-auto top-[0]">
-            <div className="bg-white-A700 grid flex-row sm:gap-10 items-center justify-center p-5 rounded-bl-[20px] rounded-br-[20px] header-block">
-              <Img
-                className="mb-[9px] ml-1.5 sm:ml-[0] object-cover img-logo"
-                src="images/img_image1.png"
-                alt="imageOne"
-              />
-              <Text
-                className="text-light_blue-800 text-logo"
-                size="txtInterSemiBold20"
-              >
-                Клубы по интересам
-              </Text>
-            </div>
-          </header>
+        <Header>
+            
+            </Header>
 
           <main className="main-block mt-10">
             <div className="login-box-table sm:w-[100%] px-[40px] py-[20px] sm:px-[0px]" >

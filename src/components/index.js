@@ -6,3 +6,4 @@ export { LetterLast } from "./Text";
 export { Card } from "./Card";
 export { Modal } from "./Modal";
 export { LoginForm } from "./LoginForm";
+export { Header } from "./Header";

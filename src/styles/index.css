@@ -15,7 +15,8 @@ body {
 
 .header-block {
   width: 65%;
-  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  
 }
 .img-logo {
   height: clamp(30px, 8vw, 50px);
